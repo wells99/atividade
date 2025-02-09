@@ -150,19 +150,37 @@ function mostrarNomes(index) {
 
     let divMain = document.querySelector("#main")
 
+    let ulExistindo = divMain.querySelector('ul');
+
     let membros = listaDeTeams[index].membro
     
-    let ul = document.createElement('ul');
+
+    if (ulExistindo) {
+        console.log(ulExistindo)
+        ulExistindo.innerHTML = `${listaDeTeams[index].nome}` // Inserindo o nome do Grupo
+
+        membros.map((membro,index) => {
+            ulExistindo.innerHTML += 
+            `<li ${index} class="text-[18px] text-white font-semibold">${membro}</li>`
+        });
+
+    } else {
+       
     
-    ul.classList = "bg-neutral-700 rounded-md p-2 pb-4 mb-4 text-[24px] text-white font-bold"
-    ul.textContent = "Lista"
+        let ul = document.createElement('ul');
+        
+        ul.classList = "bg-neutral-700 rounded-md p-2 pb-4 mb-4 text-[24px] text-white font-bold"
+        ul.textContent = `${listaDeTeams[index].nome}`
+    
+        membros.map((membro,index) => {
+            ul.innerHTML += 
+            `<li ${index} class="text-[18px] text-white font-semibold">${membro}</li>`
+        });
+    
+        divMain.prepend(ul)
+    }
 
-    membros.map((membro,index) => {
-        ul.innerHTML += 
-        `<li ${index} class="text-[18px] text-white font-semibold">${membro}</li>`
-    });
-
-    divMain.prepend(ul)
+   
     
 }
 
