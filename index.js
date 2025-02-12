@@ -89,7 +89,7 @@ function carregarTeams(lista) {
     teamsGrid.innerHTML = '';
     lista.map((team,index) => {
         teamsGrid.innerHTML += `
-            <div class="bg-cinza2 rounded-lg p-4" >
+            <li id="${index}" class="bg-cinza2 rounded-lg p-4" >
                 <div class="flex items-center justify-between">
                     <h6 class="text-white text-[18px] font-bold">${team.nome}</h6>
                     <box-icon name='show' type='solid' class="fill-white cursor-pointer duration-200 hover:fill-rosa" onclick="mostrarNomes(${index})" ></box-icon>
@@ -108,7 +108,7 @@ function carregarTeams(lista) {
                         <box-icon name='trash' class="fill-white relative z-10" onclick="excluirGrupo()" id="${index}"></box-icon>
                     </button>
                 </div>
-            </div>
+            </li>
         `;
     })
     
@@ -179,5 +179,25 @@ function mostrarNomes(index) {
     }
 
    
+    
+}
+
+function pesquisar() {
+    const pesquisa = document.querySelector("#pesquisando").value.toLowerCase();
+    
+    const grupos = document.querySelectorAll('#teams li');
+    
+    console.log(listaDeTeams);
+    
+    listaDeTeams.forEach((element,index) => {
+
+        console.log(`Posição: ${index}`);
+        console.log(`Grupo: ${element.nome}`);
+        console.log(`Membros: ${element.membro}`);
+        console.log(element.membro.includes(pesquisa));
+        console.log("")
+        
+    });
+    
     
 }
