@@ -33,12 +33,12 @@ function mostrarAdicionar() {
 
     let modalCriar = document.querySelector("#editar");
     modalCriar.classList.remove("invisible", "opacity-0");
-    let nomedoGrupo = event.target.id
-    posicao = encontrarPosicao(nomedoGrupo)
+     posicao = Number(event.target.id)
+    
     
     quantidadeMembros = listaDeTeams[posicao].participantes
     
-    limite = listaDeTeams[encontrarPosicao(nomedoGrupo)].capacidade;
+    limite = listaDeTeams[posicao].capacidade;
     
     
 }
@@ -101,11 +101,11 @@ function carregarTeams(lista) {
                 <div class="flex gap-4">
                     <button class="flex-1 h-[40px] flex items-center border-2 border-rosa rounded-lg text-white text-[12px] uppercase font-bold relative group">
                         <span class="w-0 h-full absolute top-0 left-0 bg-rosa duration-200 group-hover:w-full"></span>
-                        <span class="w-full relative z-10 text-center" onclick="mostrarAdicionar()" id="${team.nome}">Adicionar</span>
+                        <span class="w-full relative z-10 text-center" onclick="mostrarAdicionar()" id="${index}">Adicionar</span>
                     </button>
                     <button class="w-[40px] h-[40px] flex justify-center items-center border-2 border-rosa rounded-lg text-white text-[12px] uppercase font-bold relative group">
                         <span class="w-0 h-full absolute top-0 left-0 bg-rosa duration-200 group-hover:w-full"></span>
-                        <box-icon name='trash' class="fill-white relative z-10" onclick="excluirGrupo()" id="${team.nome}"></box-icon>
+                        <box-icon name='trash' class="fill-white relative z-10" onclick="excluirGrupo()" id="${index}"></box-icon>
                     </button>
                 </div>
             </div>
@@ -114,13 +114,11 @@ function carregarTeams(lista) {
     
 }
 
-function encontrarPosicao(nome) {
-    return listaDeTeams.findIndex(grupo => grupo.nome === nome);
-}
+
 
 function excluirGrupo(lista) {
     
-    let posicao = encontrarPosicao(event.target.id)
+    let posicao = event.target.id
 
     listaDeTeams.splice(posicao, 1)
 
@@ -128,7 +126,7 @@ function excluirGrupo(lista) {
     
 }
 
-function adicionarAoGrupo(lista) {
+function adicionarAoGrupo(index) {
 
     event.preventDefault();
 
@@ -183,4 +181,3 @@ function mostrarNomes(index) {
    
     
 }
-
