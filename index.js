@@ -3,6 +3,8 @@ let nomedoGrupo
 let posicao
 let limite
 let quantidadeMembros
+let inputPesquisa = document.querySelector("#pesquisando")
+const pesquisa = inputPesquisa.value.toLowerCase();
 
 function mostrarOverlay() {
     let modalBG = document.querySelector("#overlay");
@@ -114,8 +116,6 @@ function carregarTeams(lista) {
     
 }
 
-
-
 function excluirGrupo(lista) {
     
     let posicao = event.target.id
@@ -183,21 +183,29 @@ function mostrarNomes(index) {
 }
 
 function pesquisar() {
-    const pesquisa = document.querySelector("#pesquisando").value.toLowerCase();
     
-    const grupos = document.querySelectorAll('#teams li');
     
-    console.log(listaDeTeams);
-    
-    listaDeTeams.forEach((element,index) => {
+   // const grupos = document.querySelectorAll('#teams li');
 
-        console.log(`Posição: ${index}`);
-        console.log(`Grupo: ${element.nome}`);
-        console.log(`Membros: ${element.membro}`);
-        console.log(element.membro.includes(pesquisa));
-        console.log("")
-        
+   
+    
+    let teamsGrid = document.querySelector("#teams");
+    teamsGrid.innerHTML = "";
+    
+    listaDeTeams.forEach((element, index) => {
+        // Verifica se o nome do membro contém o que foi digitado
+        if (element.membro[index].toLowerCase().includes(pesquisa)) {
+            // Exibe o time no console
+            console.log(`Encontrado: ${element.nome} - Membro: ${element.membro}`);
+            
+            // Aqui você pode adicionar o item ao HTML para exibir os resultados
+            const item = document.createElement("li");
+            item.textContent = `Time: ${element.nome}, Membro: ${element.membro}`;
+            teamsGrid.appendChild(item);
+        }
     });
     
     
 }
+
+inputPesquisa.addEventListener("input", pesquisar);
