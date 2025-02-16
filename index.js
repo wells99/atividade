@@ -97,7 +97,7 @@ function carregarTeams(lista) {
         let teamsGrid = document.querySelector("#teams");
         teamsGrid.innerHTML = '';
 
-        lista.forEach((team,index) => {
+        lista.forEach((team,index,lista) => {
             teamsGrid.innerHTML += `
                 <li id="${index}" class="bg-cinza2 rounded-lg p-4" >
                     <div class="flex items-center justify-between">
@@ -214,9 +214,6 @@ function mostrarNomes(index) {
     
         divMain.prepend(ul)
     }
-
-   
-    
 }
 
     // Função para filtrar equipes
@@ -250,9 +247,8 @@ function pesquisar() {
   
     filtrarEquipesComVerificacao(pesquisa)
     
-
-
 }
+
 
 inputPesquisa.addEventListener("input", pesquisar);
 
